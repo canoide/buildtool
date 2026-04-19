@@ -31,6 +31,9 @@ namespace SuperUnityBuild.BuildTool
                 EditorGUILayout.PropertyField(property.FindPropertyRelative("baseBuildFolder"));
                 EditorGUILayout.PropertyField(property.FindPropertyRelative("buildPath"));
 
+                SerializedProperty useAbsolutePath = property.FindPropertyRelative("useAbsolutePath");
+                useAbsolutePath.boolValue = EditorGUILayout.ToggleLeft(" Use absolute path", useAbsolutePath.boolValue);
+
                 GUILayout.Space(20);
                 GUILayout.Label("Post-Build Options", UnityBuildGUIUtility.midHeaderStyle);
 
