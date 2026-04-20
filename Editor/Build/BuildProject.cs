@@ -185,8 +185,18 @@ namespace SuperUnityBuild.BuildTool
             BuildScriptingBackend scriptingBackend, BuildDistribution distribution, DateTime buildTime)
         {
             string resolvedPath = TokensUtility.ResolveBuildConfigurationTokens(prototype, releaseType, platform, target, scriptingBackend, distribution, buildTime);
+
+            // Trim leading slashes to prevent Path.Combine from treating resolvedPath as an absolute path
+            resolvedPath = resolvedPath.TrimStart('\\', '/');
+
             string buildPath = Path.Combine(BuildSettings.basicSettings.baseBuildFolder, resolvedPath);
-            buildPath = Path.GetFullPath(buildPath).TrimEnd('\\').TrimEnd('/');
+
+            if (BuildSettings.basicSettings.useAbsolutePath)
+            {
+                buildPath = Path.GetFullPath(buildPath);
+            }
+
+            buildPath = buildPath.TrimEnd('\\', '/').Replace('\\', '/');
 
             return buildPath;
         }
