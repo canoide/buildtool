@@ -296,6 +296,11 @@ namespace SuperUnityBuild.BuildTool
         /// <summary>
         /// Android 15.0, "Vanilla Ice Cream", API level 35.
         /// </summary>
-        AndroidApiLevel35 = 35
+        AndroidApiLevel35 = 35,
+
+        /// <summary>
+        /// Android 16.0, API level 36.
+        /// </summary>
+        AndroidApiLevel36 = 36
     }
 }
