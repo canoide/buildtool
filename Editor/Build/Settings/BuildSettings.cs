@@ -78,7 +78,11 @@ namespace SuperUnityBuild.BuildTool
         #region Events
 
         [OnOpenAssetAttribute(1)]
+#if UNITY_6000_5_OR_NEWER
+        public static bool HandleOpenAsset(EntityId instanceID, int line)
+#else
         public static bool HandleOpenAsset(int instanceID, int line)
+#endif
         {
             string assetPath = AssetDatabase.GetAssetPath(instanceID);
             if (assetPath == null)
